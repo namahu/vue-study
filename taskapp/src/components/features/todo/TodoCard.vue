@@ -15,7 +15,7 @@ const { todo } = defineProps<{ todo: Todo }>()
       }}</span>
       <div class="todo-card__labels">
         <span
-          v-for="label in todo.labels"
+          v-for="label in (todo.labels ?? [])"
           :key="label.id"
           class="todo-card__label"
           :style="{ backgroundColor: label.color }"
