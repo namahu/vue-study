@@ -29,7 +29,7 @@ const { todo } = defineProps<{ todo: Todo }>()
   </div>
 </template>
 
-<style lang="css" scoped>
+<style scoped lang="css">
 .todo-card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -57,13 +57,11 @@ const { todo } = defineProps<{ todo: Todo }>()
   padding: 8px 16px;
 }
 
-.todo-card__labels {
-  span {
-    border: 1px solid #ccc;
-    border-radius: 24px;
-    padding: 2px 16px;
-    font-style: italic;
-  }
+.todo-card__labels span {
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  padding: 2px 16px;
+  font-style: italic;
 }
 
 .todo-card__start-date {
