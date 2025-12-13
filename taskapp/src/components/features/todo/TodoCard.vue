@@ -22,8 +22,8 @@ const { todo } = defineProps<{ todo: Todo }>()
           >{{ label.name }}</span
         >
       </div>
-      <span class="todo-card__start-date">開始日： {{ todo.start_date.toLocaleDateString() }}</span>
-      <span class="todo-card__due-date">期限： {{ todo.due_date.toLocaleDateString() }}</span>
+      <span class="todo-card__start-date">開始日： {{ todo.start_date ? todo.start_date.toLocaleDateString() : "-" }}</span>
+      <span class="todo-card__due-date">期限： {{ todo.due_date ? todo.due_date.toLocaleDateString() : "-" }}</span>
       <span class="todo-card__description">詳細： {{ todo.description }}</span>
     </div>
   </div>
