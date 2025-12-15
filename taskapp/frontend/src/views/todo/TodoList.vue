@@ -1,50 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import TodoCard from '@/components/features/todo/TodoCard.vue'
 import type { Todo } from '@/types'
+import { useGetAllTodo } from '@/components/features/todo/api/get-todo'
 
-const todos = ref<Todo[]>([
-  {
-    id: 1,
-    title: 'Todo 1',
-    description: 'Todo 1 の説明',
-    status: 'todo',
-    labels: [
-      {
-        id: 1,
-        name: 'Label 1',
-        color: '#ff0000',
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-    ],
-    start_date: new Date(),
-    due_date: new Date(),
-    created_at: new Date(),
-    updated_at: new Date(),
-    completed_at: null,
-  },
-  {
-    id: 2,
-    title: 'Todo 2',
-    description: 'Todo 2 の説明',
-    status: 'todo',
-    labels: [
-      {
-        id: 2,
-        name: 'Label 2',
-        color: '#00ff00',
-        created_at: new Date(),
-        updated_at: new Date(),
-      },
-    ],
-    start_date: new Date(),
-    due_date: new Date(),
-    created_at: new Date(),
-    updated_at: new Date(),
-    completed_at: null,
-  },
-])
+const todos = ref<Todo[]>([])
+
+onMounted( async () => {
+  todos.value = await useGetAllTodo()
+})
 </script>
 
 <template>

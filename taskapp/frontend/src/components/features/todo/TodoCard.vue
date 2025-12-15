@@ -11,7 +11,7 @@ const { todo } = defineProps<{ todo: Todo }>()
     </div>
     <div class="todo-card__content">
       <span class="todo-card__status">{{
-        todo.status === 'todo' ? '未着手' : todo.status === 'in_progress' ? '対応中' : '完了'
+        todo.status === 'TODO' ? '未着手' : todo.status === 'IN_PROGRESS' ? '対応中' : '完了'
       }}</span>
       <div class="todo-card__labels">
         <span
