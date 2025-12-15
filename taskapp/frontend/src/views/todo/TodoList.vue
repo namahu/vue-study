@@ -4,7 +4,7 @@ import TodoCard from '@/components/features/todo/TodoCard.vue'
 import type { Todo } from '@/types'
 import { useGetAllTodo } from '@/components/features/todo/api/get-todo'
 
-const todos = ref<Todo[]>()
+const todos = ref<Todo[]>([])
 
 watchEffect( async () => {
   todos.value = await useGetAllTodo()
