@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { Prisma } from 'generated/prisma/client';
 
@@ -17,17 +17,17 @@ export class TodoController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.todoService.findOne({ id: +id });
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.todoService.findOne({ id });
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() postData: Prisma.TodoUpdateInput) {
-    return this.todoService.update({ id: +id }, postData);
+  async update(@Param('id', ParseIntPipe) id: number, @Body() postData: Prisma.TodoUpdateInput) {
+    return this.todoService.update({ id }, postData);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.todoService.remove({ id: +id });
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.todoService.remove({ id });
   }
 }
