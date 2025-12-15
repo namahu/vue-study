@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { onMounted, ref } from 'vue'
 import TodoCard from '@/components/features/todo/TodoCard.vue'
 import type { Todo } from '@/types'
 import { useGetAllTodo } from '@/components/features/todo/api/get-todo'
 
 const todos = ref<Todo[]>([])
 
-watchEffect( async () => {
+onMounted( async () => {
   todos.value = await useGetAllTodo()
 })
 </script>
