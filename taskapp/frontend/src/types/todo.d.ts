@@ -1,4 +1,4 @@
-type Status = 'todo' | 'in_progress' | 'completed'
+type Status = 'TODO' | 'IN_PROGRESS' | 'COMPLETED'
 
 export interface Label {
   id: number
