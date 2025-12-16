@@ -14,7 +14,7 @@
     <div v-if="isOpen" class="sort__content">
       <div class="sort__target">
         <label for="sort-target">■ ソートする項目</label>
-        <select id="sort-target" class="sort__target">
+        <select id="sort-target">
           <option>-- 選択してください --</option>
           <option value="id">ID</option>
           <option value="created_at">作成日</option>
@@ -74,13 +74,13 @@
   
   .sort__target {
     grid-area: sort-target;
-    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
-
+  
   .sort__target select {
+    font-size: 1.2rem;
     padding: 4px 16px;
   }
 
