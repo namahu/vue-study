@@ -60,6 +60,10 @@
     border-radius: 6px;
     padding: 16px;
     position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    z-index: 10;
   }
 
 
