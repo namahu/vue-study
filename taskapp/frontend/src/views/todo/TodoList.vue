@@ -4,6 +4,7 @@ import TodoCard from '@/components/features/todo/TodoCard.vue'
 import type { Todo } from '@/types'
 import { useGetAllTodo } from '@/components/features/todo/api/get-todo'
 import Sort from '@/components/ui/sort/Sort.vue'
+import Filter from '@/components/ui/filter/Filter.vue'
 
 const todos = ref<Todo[]>([])
 
@@ -20,6 +21,7 @@ onMounted( async () => {
       </div>
       <div class="todo-list__header-menu">
         <Sort />
+        <Filter />
       </div>
     </div>
     <div class="todo-list__container">
@@ -45,6 +47,9 @@ onMounted( async () => {
 }
 
 .todo-list__header-menu {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
   margin: 0 32px;
 }
 
