@@ -21,11 +21,11 @@
         </select>
       </div>
       <div class="sort__sort-order sort-order-asc">
-        <input type="radio" name="sort-rule" id="sort-asc">
+        <input type="radio" name="sort-rule" id="sort-asc" value="asc">
         <label for="sort-asc">昇順</label>
       </div>
       <div class="sort__sort-order sort-order-desc">
-        <input type="radio" name="sort-rule" id="sort-desc">
+        <input type="radio" name="sort-rule" id="sort-desc" value="desc">
         <label for="sort-desc">降順</label>
       </div>
       <button type="button" class="sort__submit-button">並び替える</button>
