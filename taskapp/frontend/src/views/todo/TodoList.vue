@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import TodoCard from '@/components/features/todo/TodoCard.vue'
-import type { Todo } from '@/types'
+import type { CreateTodoType, Todo } from '@/types'
 import { useGetAllTodo } from '@/components/features/todo/api/get-todo'
 import Sort from '@/components/ui/sort/Sort.vue'
 import Filter from '@/components/ui/filter/Filter.vue'
 import CreateTodo from '@/components/features/todo/CreateTodo.vue'
+import { useCreateTodo } from '@/components/features/todo/api/create-todo'
 
 const todos = ref<Todo[]>([])
+
+const addTodo = async (newTodo: CreateTodoType) => {
+  await useCreateTodo(newTodo)
+}
 
 onMounted( async () => {
   todos.value = await useGetAllTodo()
@@ -23,7 +28,7 @@ onMounted( async () => {
       <div class="todo-list__header-menu">
         <Sort />
         <Filter />
-        <CreateTodo />
+        <CreateTodo @add-todo="addTodo" />
       </div>
     </div>
     <div class="todo-list__container">
