@@ -1,10 +1,33 @@
 <script setup lang="ts">
+  import type { CreateTodoType } from "@/types"
   import { ref } from "vue"
 
+  const newTodoInitialValue = {
+    title: "",
+    description: null,
+    labels: null,
+    start_date: null,
+    due_date: null,
+  }
+
   const isOpen = ref(false)
+  const newTodo = ref<CreateTodoType>(newTodoInitialValue)
+
+  const emit = defineEmits(["add-todo"])
 
   const toggleFormOpen = () => {
     isOpen.value = !isOpen.value
+  }
+
+  const addTodo = () => {
+    emit("add-todo", newTodo.value)
+    newTodo.value = {
+      title: "",
+      description: null,
+      labels: null,
+      start_date: null,
+      due_date: null
+    }
   }
 
 </script>
@@ -15,27 +38,27 @@
       <button type="button" @click="toggleFormOpen">新規Todo作成</button>
     </div>
     <div v-if="!isOpen" class="create-todo__form">
-      <form action="" method="post">
+      <form @submit.prevent="addTodo">
         <h1>新規Todo作成</h1>
         <div class="create-todo__form-item">
           <label for="title">タイトル</label>
-          <input type="text" name="title" id="title" />
+          <input type="text" name="title" id="title" v-model="newTodo.title" />
         </div>
         <div class="create-todo__form-item">
           <label for="description">詳細</label>
-          <textarea name="description" id="description"></textarea>
+          <textarea name="description" id="description" v-model="newTodo.description"></textarea>
         </div>
         <div class="create-todo__form-item">
           <label for="start_date">開始日</label>
-          <input type="text" name="start_date" id="start_date" />
+          <input type="date" name="start_date" id="start_date" v-model="newTodo.start_date" />
         </div>
         <div class="create-todo__form-item">
           <label for="due_date">期限日</label>
-          <input type="text" name="due_date" id="due_date" />
+          <input type="date" name="due_date" id="due_date" v-model="newTodo.due_date" />
         </div>
         <div class="create-todo__form-item">
           <label for="labels">ラベル</label>
-          <select name="labels" id="labels">
+          <select name="labels" id="labels" v-model="newTodo.labels">
             <option value="none"></option>
           </select>
         </div>
