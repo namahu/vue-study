@@ -20,6 +20,8 @@
   }
 
   const addTodo = () => {
+    if (newTodo.value.start_date) newTodo.value.start_date = new Date(newTodo.value.start_date);
+    if (newTodo.value.due_date) newTodo.value.due_date = new Date(newTodo.value.due_date);
     emit("add-todo", newTodo.value)
     newTodo.value = {
       title: "",
