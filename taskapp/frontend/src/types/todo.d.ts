@@ -20,3 +20,5 @@ export interface Todo {
   updated_at: Date
   completed_at: Date | null
 }
+
+export type CreateTodoType = Omit<Todo, "id" | "created_at" | "updated_at" | "completed_at" | "status">;
