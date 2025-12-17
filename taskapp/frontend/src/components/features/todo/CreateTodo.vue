@@ -37,7 +37,7 @@
     <div class="create-todo__button">
       <button type="button" @click="toggleFormOpen">新規Todo作成</button>
     </div>
-    <div v-if="!isOpen" class="create-todo__form">
+    <div v-if="isOpen" class="create-todo__form">
       <form @submit.prevent="addTodo">
         <h1>新規Todo作成</h1>
         <div class="create-todo__form-item">
