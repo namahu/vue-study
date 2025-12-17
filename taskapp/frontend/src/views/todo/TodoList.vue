@@ -5,6 +5,7 @@ import type { Todo } from '@/types'
 import { useGetAllTodo } from '@/components/features/todo/api/get-todo'
 import Sort from '@/components/ui/sort/Sort.vue'
 import Filter from '@/components/ui/filter/Filter.vue'
+import CreateTodo from '@/components/features/todo/CreateTodo.vue'
 
 const todos = ref<Todo[]>([])
 
@@ -22,6 +23,7 @@ onMounted( async () => {
       <div class="todo-list__header-menu">
         <Sort />
         <Filter />
+        <CreateTodo />
       </div>
     </div>
     <div class="todo-list__container">
