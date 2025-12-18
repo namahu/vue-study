@@ -11,8 +11,13 @@ import { useCreateTodo } from '@/components/features/todo/api/create-todo'
 const todos = ref<Todo[]>([])
 
 const addTodo = async (newTodo: CreateTodoType) => {
-  const response = await useCreateTodo(newTodo)
-  todos.value.push(response)
+  try {
+    const response = await useCreateTodo(newTodo)
+    todos.value.push(response)
+  } catch (error) {
+    console.error('Todo作成に失敗しました:', error)
+    // Todo: ユーザーにエラーメッセージを表示する処理を追加
+  }
 }
 
 onMounted( async () => {
