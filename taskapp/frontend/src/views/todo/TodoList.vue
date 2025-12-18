@@ -11,7 +11,8 @@ import { useCreateTodo } from '@/components/features/todo/api/create-todo'
 const todos = ref<Todo[]>([])
 
 const addTodo = async (newTodo: CreateTodoType) => {
-  await useCreateTodo(newTodo)
+  const response = await useCreateTodo(newTodo)
+  todos.value.push(response)
 }
 
 onMounted( async () => {
