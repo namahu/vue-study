@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import type { CreateTodoType } from "@/types"
+  import type { TodoCreateInput, TodoCreateForm } from "@/types"
   import { ref } from "vue"
 
-  const newTodoInitialValue = {
+  const newTodoInitialValue: TodoCreateForm = {
     title: "",
     description: null,
     labels: null,
@@ -11,7 +11,7 @@
   }
 
   const isOpen = ref(false)
-  const newTodo = ref<CreateTodoType>(newTodoInitialValue)
+  const newTodo = ref<TodoCreateForm>(newTodoInitialValue)
 
   const emit = defineEmits(["add-todo"])
 
@@ -30,7 +30,7 @@
   }
 
   const addTodo = () => {
-    const todoToEmit: CreateTodoType = {
+    const todoToEmit: TodoCreateInput = {
       ...newTodo.value,
       start_date: newTodo.value.start_date ? new Date(newTodo.value.start_date) : null,
       due_date: newTodo.value.due_date ? new Date(newTodo.value.due_date) : null,

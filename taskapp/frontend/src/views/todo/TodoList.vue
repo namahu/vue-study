@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import TodoCard from '@/components/features/todo/TodoCard.vue'
-import type { CreateTodoType, Todo } from '@/types'
+import type { TodoCreateInput, TodoApiResponse } from '@/types'
 import { useGetAllTodo } from '@/components/features/todo/api/get-todo'
 import Sort from '@/components/ui/sort/Sort.vue'
 import Filter from '@/components/ui/filter/Filter.vue'
 import CreateTodo from '@/components/features/todo/CreateTodo.vue'
 import { useCreateTodo } from '@/components/features/todo/api/create-todo'
 
-const todos = ref<Todo[]>([])
+const todos = ref<TodoApiResponse[]>([])
 
-const addTodo = async (newTodo: CreateTodoType) => {
+const addTodo = async (newTodo: TodoCreateInput) => {
   try {
     const response = await useCreateTodo(newTodo)
     todos.value.push(response)

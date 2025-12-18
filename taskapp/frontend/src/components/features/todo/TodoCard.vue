@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import type { Todo } from '@/types'
+import type { TodoApiResponse } from '@/types'
 
-const { todo } = defineProps<{ todo: Todo }>()
+const { todo } = defineProps<{ todo: TodoApiResponse }>()
+
+const convertToLocalDateString = (timestamp: string) => {
+  return new Date(timestamp).toLocaleDateString();
+}
 </script>
 
 <template>
