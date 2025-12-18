@@ -19,10 +19,7 @@
     isOpen.value = !isOpen.value
   }
 
-  const addTodo = () => {
-    if (newTodo.value.start_date) newTodo.value.start_date = new Date(newTodo.value.start_date);
-    if (newTodo.value.due_date) newTodo.value.due_date = new Date(newTodo.value.due_date);
-    emit("add-todo", newTodo.value)
+  const resetForm = () => {
     newTodo.value = {
       title: "",
       description: null,
@@ -30,6 +27,16 @@
       start_date: null,
       due_date: null
     }
+  }
+
+  const addTodo = () => {
+    const todoToEmit: CreateTodoType = {
+      ...newTodo.value,
+      start_date: newTodo.value.start_date ? new Date(newTodo.value.start_date) : null,
+      due_date: newTodo.value.due_date ? new Date(newTodo.value.due_date) : null,
+    }
+    emit("add-todo", todoToEmit)
+    resetForm()
   }
 
 </script>
