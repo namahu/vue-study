@@ -37,8 +37,8 @@
     }
     emit("add-todo", todoToEmit)
     resetForm()
+    isOpen.value = false
   }
-
 </script>
 
 <template>
@@ -51,7 +51,7 @@
         <h1>新規Todo作成</h1>
         <div class="create-todo__form-item">
           <label for="title">タイトル</label>
-          <input type="text" name="title" id="title" v-model="newTodo.title" />
+          <input required type="text" name="title" id="title" v-model="newTodo.title" />
         </div>
         <div class="create-todo__form-item">
           <label for="description">詳細</label>
