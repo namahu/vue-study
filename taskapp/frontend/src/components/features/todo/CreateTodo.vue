@@ -11,6 +11,7 @@
   }
 
   const isOpen = ref(false)
+  const isInvalidTodoTitle = ref(false)
   const newTodo = ref<TodoCreateForm>(newTodoInitialValue)
 
   const emit = defineEmits(["add-todo"])
@@ -39,6 +40,15 @@
     resetForm()
     isOpen.value = false
   }
+
+  const validateTodoTitle = () => {
+    if (!newTodo.value.title.trim()) {
+      isInvalidTodoTitle.value = true;
+      return;
+    }
+    isInvalidTodoTitle.value = false;
+  }
+  
 </script>
 
 <template>
@@ -49,9 +59,10 @@
     <div v-if="isOpen" class="create-todo__form">
       <form @submit.prevent="addTodo">
         <h1>新規Todo作成</h1>
-        <div class="create-todo__form-item">
+        <div class="create-todo__form-item" :class="{ 'validate-error': isInvalidTodoTitle }">
           <label for="title">タイトル</label>
-          <input required type="text" name="title" id="title" v-model="newTodo.title" />
+          <input @blur="validateTodoTitle" type="text" name="title" id="title" v-model="newTodo.title" />
+          <span v-if="isInvalidTodoTitle">タイトルは必ず入力してください。</span>
         </div>
         <div class="create-todo__form-item">
           <label for="description">詳細</label>
@@ -72,7 +83,7 @@
           </select>
         </div>
         <div class="form-button-container">
-          <button type="submit" class="button__submit">追加する</button>
+          <button type="submit" class="button__submit" :disabled="isInvalidTodoTitle">追加する</button>
           <button type="button" class="button__cancel" @click="toggleFormOpen">キャンセルする</button>
         </div>
       </form>
@@ -148,7 +159,22 @@
     background-color: blue;
   }
 
+  .form-button-container .button__submit[disabled] {
+    background-color: #e3e3e3;
+    cursor: unset;
+  }
+
   .form-button-container .button__cancel {
     background-color: red;
+  }
+
+  .validate-error input {
+    border-color: red;
+  }
+
+  .validate-error span {
+    color: red;
+    margin: 0 24px;
+    font-size: 1.2rem;
   }
 </style>
