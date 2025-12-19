@@ -28,6 +28,8 @@
       start_date: null,
       due_date: null
     }
+
+    isInvalidTodoTitle.value = false;
   }
 
   const addTodo = () => {
