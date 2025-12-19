@@ -13,15 +13,13 @@ const errorMessage = ref<string>('')
 
 const addTodo = async (newTodo: TodoCreateInput) => {
   try {
-    errorMessage.value = '' // エラーメッセージをクリア
-    const response = await useCreateTodo(newTodo)
-    todos.value.push(response)
+    errorMessage.value = "";
+    const response = await useCreateTodo(newTodo);
+    todos.value.push(response);
   } catch (error) {
-    console.error('Todo作成に失敗しました:', error)
-    // ユーザー向けのフレンドリーなエラーメッセージを表示
-    const errorMsg = error instanceof Error ? error.message : 'Todoの作成中に予期しないエラーが発生しました'
-    errorMessage.value = `Todo作成に失敗しました: ${errorMsg}`
-    return // エラー後の適切な終了
+    console.error("Todo作成に失敗しました:", error);
+    errorMessage.value = "Todoの作成に失敗しました。もう一度お試しください。";
+    return;
   }
 }
 
