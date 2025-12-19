@@ -34,6 +34,8 @@
   }
 
   const addTodo = () => {
+    validateTodoTitle();
+    if (isInvalidTodoTitle.value) return;
     const todoToEmit: TodoCreateInput = {
       ...newTodo.value,
       start_date: newTodo.value.start_date ? new Date(newTodo.value.start_date) : null,
