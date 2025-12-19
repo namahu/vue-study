@@ -4,7 +4,15 @@ import type { TodoApiResponse } from '@/types'
 const { todo } = defineProps<{ todo: TodoApiResponse }>()
 
 const convertDateTimeToDateString = (dateTime: string) => {
-  return new Date(dateTime).toLocaleDateString();
+  const date = new Date(dateTime);
+  if (isNaN(date.getTime())) {
+    return "-";
+  }
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  });
 }
 </script>
 
