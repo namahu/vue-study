@@ -1,22 +1,35 @@
-type Status = 'TODO' | 'IN_PROGRESS' | 'COMPLETED'
+type Status = 'TODO' | 'IN_PROGRESS' | 'COMPLETED';
 
 export interface Label {
-  id: number
-  name: string
-  color: string
-  created_at: Date
-  updated_at: Date
+  id: number;
+  name: string;
+  color: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Todo {
-  id: number
-  title: string
-  description: string | null
-  status: Status
-  labels: Label[] | null
-  start_date: Date | null
-  due_date: Date | null
-  created_at: Date
-  updated_at: Date
-  completed_at: Date | null
+  title: string;
+  description: string | null;
+  labels: Label[] | null;
+}
+
+export interface TodoApiResponse extends Todo {
+  id: number;
+  status: Status;
+  start_date: string | null;
+  due_date: string | null;
+  created_at: string;
+  updated_at: string;
+  completed_at: string | null;
+}
+
+export interface TodoCreateInput extends Todo {
+  start_date: Date | null;
+  due_date: Date | null;
+}
+
+export interface TodoCreateForm extends Todo {
+  start_date: string | null;
+  due_date: string | null;
 }

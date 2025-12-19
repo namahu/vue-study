@@ -1,7 +1,19 @@
 <script setup lang="ts">
-import type { Todo } from '@/types'
+import type { TodoApiResponse } from '@/types'
 
-const { todo } = defineProps<{ todo: Todo }>()
+const { todo } = defineProps<{ todo: TodoApiResponse }>()
+
+const convertDateTimeToDateString = (dateTime: string) => {
+  const date = new Date(dateTime);
+  if (isNaN(date.getTime())) {
+    return "-";
+  }
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  });
+}
 </script>
 
 <template>
@@ -22,8 +34,8 @@ const { todo } = defineProps<{ todo: Todo }>()
           >{{ label.name }}</span
         >
       </div>
-      <span class="todo-card__start-date">開始日： {{ todo.start_date ? todo.start_date.toLocaleDateString() : "-" }}</span>
-      <span class="todo-card__due-date">期限日： {{ todo.due_date ? todo.due_date.toLocaleDateString() : "-" }}</span>
+      <span class="todo-card__start-date">開始日： {{ todo.start_date ? convertDateTimeToDateString(todo.start_date) : "-" }}</span>
+      <span class="todo-card__due-date">期限日： {{ todo.due_date ? convertDateTimeToDateString(todo.due_date) : "-" }}</span>
       <span class="todo-card__description">詳細： {{ todo.description }}</span>
     </div>
   </div>

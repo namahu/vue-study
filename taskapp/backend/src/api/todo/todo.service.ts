@@ -8,6 +8,11 @@ export class TodoService {
   constructor(private prisma: PrismaService) {}
 
   create(data: Prisma.TodoCreateInput) {
+    if (!data.labels) {
+      data.labels = {
+        connect: []
+      };
+    }
     return this.prisma.todo.create({ data });
   }
 
