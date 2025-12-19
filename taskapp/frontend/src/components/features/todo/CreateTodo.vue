@@ -17,7 +17,8 @@
   const emit = defineEmits(["add-todo"])
 
   const toggleFormOpen = () => {
-    isOpen.value = !isOpen.value
+    resetForm();
+    isOpen.value = !isOpen.value;
   }
 
   const resetForm = () => {
@@ -39,8 +40,7 @@
       due_date: newTodo.value.due_date ? new Date(newTodo.value.due_date) : null,
     }
     emit("add-todo", todoToEmit)
-    resetForm()
-    isOpen.value = false
+    toggleFormOpen()
   }
 
   const validateTodoTitle = () => {
